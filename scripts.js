@@ -67,8 +67,26 @@ function logAllBooks() {
 }
 
 function deleteBook(toDelete) {
-    console.log(toDelete.id);
     myLibrary = myLibrary.filter(book => book.id != toDelete.id);
+}
+
+function updateReadText(id, value) {
+    const toUpdate = document.getElementById(id);
+    if(value == true) {
+        toUpdate.querySelector("#book-read").textContent = "Has been read";
+    }else {
+        toUpdate.querySelector("#book-read").textContent = "Has not been read";
+    }
+}
+
+function toggleHasBeenRead(id) {
+    myLibrary.forEach((book) => {
+        if(book.id == id) {
+            book.hasBeenRead = !book.hasBeenRead;
+            updateReadText(id, book.hasBeenRead);
+            return;
+        }
+    });
 }
 
 function addBookToPage(book) {
@@ -89,6 +107,7 @@ function addBookToPage(book) {
     }else {
         bookRead.textContent = "Has not been read.";
     }
+    bookRead.setAttribute("id", "book-read");
     newBook.appendChild(bookRead);
 
     newBook.classList.add("book");
@@ -96,11 +115,33 @@ function addBookToPage(book) {
     let deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.addEventListener("click", (event) => {
-        deleteBook(event.currentTarget.parentElement);
-        event.currentTarget.parentElement.remove()
-    });
+        const bookDiv = event.currentTarget.parentElement.parentElement;
 
-    newBook.appendChild(deleteButton);
+        deleteBook({ id: bookDiv.id });
+        bookDiv.remove();
+    });
+    
+
+    let toggleHasBeenReadButton = document.createElement("button");
+    if(book.hasBeenRead) {
+        toggleHasBeenReadButton.textContent = "Mark Unread";
+    }else {
+        toggleHasBeenReadButton.textContent = "Mark Read";
+    }
+    toggleHasBeenReadButton.addEventListener(
+        "click",
+        () => {
+            toggleHasBeenRead(newBook.getAttribute("id"));
+    }); 
+
+    let optionsDiv = document.createElement("div");
+    optionsDiv.setAttribute("id", "book-options-div");
+
+    optionsDiv.appendChild(toggleHasBeenReadButton);
+    optionsDiv.appendChild(deleteButton);
+
+    newBook.appendChild(optionsDiv);
+
     booksDisplay.appendChild(newBook);
 }
 
