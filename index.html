@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Page Title Here</title>
+        <title>Library | Home</title>
         <link rel="stylesheet" href="./styles.css">
         <script src="./scripts.js" defer></script>
     </head>
@@ -10,9 +10,68 @@
     <body>
         
         <div id="page-container">
-            <header></header>
-            <main></main>
-            <footer></footer>
+            <header>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="header-icon"><title>bookshelf</title><path d="M9 3V18H12V3H9M12 5L16 18L19 17L15 4L12 5M5 5V18H8V5H5M3 19V21H21V19H3Z" /></svg>
+                <h1 id="header-hero">Dan's Book Library</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="header-icon"><title>bookshelf</title><path d="M9 3V18H12V3H9M12 5L16 18L19 17L15 4L12 5M5 5V18H8V5H5M3 19V21H21V19H3Z" /></svg>
+            </header>
+            <main>
+                <div id="books">
+                    <div id="books-options">
+                        <h2>Add a book: </h2>
+                        <button id="add-book-button">Add A Book</button>
+
+                        <dialog id="add-book-dialog">
+                            <form id="add-book-form">
+                                <h2 id="dialog-hero">Add a book to the library</h2>
+
+                                <div class="form-field">
+                                    <label for="dialog-title">Title</label>
+                                    <input
+                                        id="dialog-title"
+                                        name="title"
+                                        type="text"
+                                        placeholder="The Hobbit"
+                                        required
+                                        maxlength="255"
+                                    >
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="dialog-author">Author</label>
+                                    <input
+                                        id="dialog-author"
+                                        name="author"
+                                        type="text"
+                                        placeholder="J.R.R. Tolkien"
+                                        required
+                                        maxlength="255"
+                                    >
+                                </div>
+
+                                <div class="form-field form-checkbox">
+                                    <label for="dialog-read">Have you read this book?</label>
+                                    <input
+                                        id="dialog-read"
+                                        name="read"
+                                        type="checkbox"
+                                    >
+                                </div>
+
+                                <div class="dialog-actions">
+                                    <button type="submit">Add Book</button>
+                                    <button id="add-book-close" type="button">Cancel</button>
+                                </div>
+                            </form>
+                    </div>
+                    <div id="books-display">
+
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <h3>Thanks for visiting!</h3>
+            </footer>
         </div>
 
     </body>
