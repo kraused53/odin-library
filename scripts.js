@@ -31,7 +31,6 @@ addBookForm.addEventListener("submit", (event) => {
             dialogBookAuthor.reportValidity();
             dialogBookAuthor.setCustomValidity("");
         }
-
         return;
     }
 
